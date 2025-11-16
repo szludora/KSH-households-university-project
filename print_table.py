@@ -1,13 +1,9 @@
 from colorama import Fore, Style, init
+from config import HEADER_COLOR, DATES_COLOR, BORDER_COLOR, MAIN_TITLE_COLOR, Log
 
 init(autoreset=True)
 
 # ============ Configuration ============
-HEADER_COLOR = Fore.YELLOW
-DATES_COLOR = Fore.GREEN
-BORDER_COLOR = Fore.MAGENTA
-MAIN_TITLE_COLOR = Fore.CYAN
-
 CELL_WIDTH_LEFT = 30
 CELL_WIDTH_RIGHT = 5
 COLUMN_SEPARATOR = " │ "
@@ -55,13 +51,13 @@ def print_table(data):
     BORDER = create_border_line(TABLE_WIDTH)
     DIVIDER = create_column_divider(NUM_COLUMNS)
 
-    print()
-    print(BORDER_COLOR + BORDER)
+    Log()
+    Log(BORDER_COLOR + BORDER)
 
     for i, row in enumerate(data):
         # main title
         if i == 0:
-            print("\n" + format_title(row, TABLE_WIDTH, color=MAIN_TITLE_COLOR) + "\n")
+            Log("\n" + format_title(row, TABLE_WIDTH, color=MAIN_TITLE_COLOR) + "\n")
 
         # skip dates header for now
         elif i == 1:
@@ -69,12 +65,12 @@ def print_table(data):
 
         # subtable titles
         elif len(row) < 3:
-            print("\n" + format_title(row, TABLE_WIDTH) + "\n")
-            print(format_data_row(DATES_ROW, DATES_COLOR))
-            print(DIVIDER)
+            Log("\n" + format_title(row, TABLE_WIDTH) + "\n")
+            Log(format_data_row(DATES_ROW, DATES_COLOR))
+            Log(DIVIDER)
 
         # data rows
         else:
-            print(format_data_row(row))
+            Log(format_data_row(row))
 
-    print("\n" + BORDER_COLOR + BORDER + "\n")
+    Log("\n" + BORDER_COLOR + BORDER + "\n")

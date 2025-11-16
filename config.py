@@ -14,14 +14,14 @@ RESET_COLOR = Fore.RESET
 
 # lang = "en"
 lang = "hu"
-LOG = True
 
 LOG = {
-    "EXTRACT": False,
-    "PRINT_TABLE": True,
+    "DEBUG": True,
+    "INFO": True,
+    "DEEP_DEBUG": False,
 }
 
-def Log(*args, **kwargs):
+def Log(*args, level="DEBUG", **kwargs):
     """Print only if logging is enabled"""
-    if LOG:
+    if LOG[level]:
         print(*args, **kwargs)

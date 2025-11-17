@@ -1,7 +1,6 @@
-from colorama import Fore, Style, init
-from config import HEADER_COLOR, DATES_COLOR, BORDER_COLOR, MAIN_TITLE_COLOR, Log
+from config import LOG_TYPES, MAGENTA, RESET, YELLOW, GREEN, MAGENTA, CYAN, Log
 
-init(autoreset=True)
+Log("Print table module loaded", level=LOG_TYPES.INFO)
 
 # ======================== Configuration ========================
 CELL_WIDTH_LEFT = 30
@@ -10,17 +9,17 @@ COLUMN_SEPARATOR = " │ "
 
 
 # ======================== Format Helpers ========================
-def __format_data_row(row, color=Fore.RESET):
+def __format_data_row(row, color=RESET):
     """Format a single data row with colors and proper spacing."""
     first_cell = row[0].ljust(CELL_WIDTH_LEFT)
-    rest_cells = [color + cell.rjust(CELL_WIDTH_RIGHT) + Style.RESET_ALL for cell in row[1:]]
+    rest_cells = [color + cell.rjust(CELL_WIDTH_RIGHT) + RESET for cell in row[1:]]
     return COLUMN_SEPARATOR.join([first_cell] + rest_cells) + " │"
   
   
-def __format_title(row, width, color = HEADER_COLOR):
+def __format_title(row, width, color = YELLOW):
     """Format title centered and colored."""
     text = "".join(row)
-    return color + text.center(width) + Style.RESET_ALL
+    return color + text.center(width) + RESET
 
 
 def __create_border_line(width):
@@ -40,7 +39,7 @@ def print_table(data):
     """Print formatted table with titles, headers, and data."""
     if len(data) < 2:
         return
-      
+    
     # extract dates header "2007, 2008, ..."
     DATES_ROW = data[1] 
     
@@ -51,13 +50,14 @@ def print_table(data):
     BORDER = __create_border_line(TABLE_WIDTH)
     DIVIDER = __create_column_divider(NUM_COLUMNS)
 
-    Log(level="INFO")
-    Log(BORDER_COLOR + BORDER, level="INFO")
+    Log()
+    Log(MAGENTA + BORDER, level=LOG_TYPES.DEBUG, show_label=False)
+    Log( "Printing formatted table...", level=LOG_TYPES.DEBUG)
 
     for i, row in enumerate(data):
         # main title
         if i == 0:
-            Log("\n" + __format_title(row, TABLE_WIDTH, color=MAIN_TITLE_COLOR) + "\n", level="INFO")
+            Log("\n" + __format_title(row, TABLE_WIDTH, color=CYAN) + "\n", level=LOG_TYPES.DEBUG, show_label=False)
 
         # skip dates header for now
         elif i == 1:
@@ -65,12 +65,12 @@ def print_table(data):
 
         # subtable titles
         elif len(row) < 3:
-            Log("\n" + __format_title(row, TABLE_WIDTH) + "\n", level="INFO")
-            Log(__format_data_row(DATES_ROW, DATES_COLOR), level="INFO")
-            Log(DIVIDER, level="INFO")
+            Log("\n" + __format_title(row, TABLE_WIDTH) + "\n", level=LOG_TYPES.DEBUG, show_label=False)
+            Log(__format_data_row(DATES_ROW, GREEN), level=LOG_TYPES.DEBUG, show_label=False)
+            Log(DIVIDER, level=LOG_TYPES.DEBUG, show_label=False)
 
         # data rows
         else:
-            Log(__format_data_row(row), level="INFO")
+            Log(__format_data_row(row), level=LOG_TYPES.DEBUG, show_label=False)
 
-    Log("\n" + BORDER_COLOR + BORDER + "\n", level="INFO")
+    Log("\n" + MAGENTA + BORDER + "\n", level=LOG_TYPES.DEBUG, show_label=False)

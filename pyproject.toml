@@ -1,5 +1,5 @@
 [project]
-name = "housing-prices-statistics"
+name = "main"
 version = "0.1.0"
 description = "extract data from CSV and create diagrams, made for GDE university project"
 requires-python = ">=3.9"

@@ -1,5 +1,5 @@
-from config import LOG_TYPES, YELLOW, Log, LOG, RESET, MAGENTA, lang
-from translations import section_titles, row_types
+from config.config import LOG_TYPES, YELLOW, Log, LOG, RESET, MAGENTA, lang
+from config.translations import section_titles, row_types
 
 
 Log("Main module loaded", level=LOG_TYPES.INFO)

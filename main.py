@@ -1,8 +1,9 @@
-from config import LOG_TYPES, Log
-from draw_diagram import draw_diagrams
-from extract import extract_data
-from print_table import print_table
+from config.config import LOG_TYPES, Log
+from scripts.draw_diagram import draw_diagrams
+from scripts.extract import extract_data
+from scripts.print_table import print_table
 
+FILE_PATH = "./data/data.csv"
 
 def load_csv(file_path):
     with open(file_path, 'r') as file:
@@ -12,7 +13,7 @@ def load_csv(file_path):
 
 def main():
     Log("Main module loaded", level=LOG_TYPES.INFO)
-    raw = load_csv("data.csv")
+    raw = load_csv(FILE_PATH)
     print_table(raw)    
     draw_diagrams(extract_data(raw), cols=2)
 

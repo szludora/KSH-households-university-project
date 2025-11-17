@@ -1,4 +1,5 @@
-from config import LOG_TYPES, MAGENTA, RESET, YELLOW, GREEN, MAGENTA, CYAN, Log
+from config.config import LOG_TYPES, MAGENTA, RESET, YELLOW, GREEN, MAGENTA, CYAN, Log
+
 
 Log("Print table module loaded", level=LOG_TYPES.INFO)
 

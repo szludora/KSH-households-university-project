@@ -2,11 +2,11 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy import stats
-from config import LOG_TYPES, Log, lang
-from translations import diagram_texts
+from config.config import LOG_TYPES, Log, lang
+from config.translations import diagram_texts
+
 
 Log("Draw diagram module loaded", level=LOG_TYPES.INFO)
-
 
 # =================================== Diagram Drawing Helpers ===================================
 

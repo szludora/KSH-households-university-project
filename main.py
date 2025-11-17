@@ -1,9 +1,7 @@
-import matplotlib.pyplot as plt         # pip install matplotlib
-import numpy as np                      # pip install numpy
-
+from config import LOG_TYPES, Log
+from draw_diagram import draw_diagrams
 from extract import extract_data
 from print_table import print_table
-
 
 
 def load_csv(file_path):
@@ -13,10 +11,10 @@ def load_csv(file_path):
 
 
 def main():
+    Log("Main module loaded", level=LOG_TYPES.INFO)
     raw = load_csv("data.csv")
-    print_table(raw)  # print formatted table
-    data = extract_data(raw)  # extract raw data into structured format
-
+    print_table(raw)    
+    draw_diagrams(extract_data(raw), cols=2)
 
 if __name__ == "__main__":
     main()

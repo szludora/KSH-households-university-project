@@ -58,27 +58,22 @@ python main.py
 ```
 
 ## Project Structure
-```md
-.
-├── [main.py](main.py)                                  # Main entry point
-│
-├── config/
-│   ├── [config.py](config/config.py)                   # Configuration and logging setup
-│   └── [translations.py](config/translations.py)       # Multilingual text support
-│
-├── scripts/
-│   ├── [draw_diagram.py](scripts/draw_diagram.py)      # Line and scatter plot generation
-│   ├── [extract.py](scripts/extract.py)                # CSV parsing and data extraction
-│   └── [print_table.py](scripts/print_table.py)        # Formatted table display
-│
-├── data/
-│   └── [data.csv](data/data.csv)                       # Housing price data
-│
-├── [pyproject.toml](pyproject.toml)                    # Project configuration
-├── [requirements.txt](requirements.txt)                # Python dependencies
-└── [README.md](README.md)                              # This file
 
-```
+- **[main.py](main.py)** – Main entry point
+- **config/**
+  - [config.py](config/config.py) – Configuration and logging setup
+  - [translations.py](config/translations.py) – Multilingual text support
+- **scripts/**
+  - [draw_diagram.py](scripts/draw_diagram.py) – Line and scatter plot generation
+  - [extract.py](scripts/extract.py) – CSV parsing and data extraction
+  - [print_table.py](scripts/print_table.py) – Formatted table display
+- **data/**
+  - [data.csv](data/data.csv) – Housing price data
+- [pyproject.toml](pyproject.toml) – Project configuration
+- [requirements.txt](requirements.txt) – Python dependencies
+- [README.md](README.md) – Project documentation
+
+
 
 ## Features in Detail
 

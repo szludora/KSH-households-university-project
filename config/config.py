@@ -1,6 +1,5 @@
 from enum import Enum
 from colorama import Fore
-from matplotlib.pylab import Enum
 
 # ============ diagram format settings ============
 
@@ -27,22 +26,38 @@ LOG = {
     LOG_TYPES.INFO : True,
     LOG_TYPES.ERROR : True,
     LOG_TYPES.ACTION : True,
-    LOG_TYPES.DEBUG : False,
-    LOG_TYPES.DEEP_DEBUG : False,
+    LOG_TYPES.DEBUG : True,
+    LOG_TYPES.DEEP_DEBUG : True,
 }
 
+# =========== logging function ============
+
+# Color mapping for log levels
+LOG_COLORS = {
+    LOG_TYPES.DEBUG: Fore.YELLOW,
+    LOG_TYPES.DEEP_DEBUG: Fore.LIGHTCYAN_EX,
+    LOG_TYPES.INFO: Fore.BLUE,
+    LOG_TYPES.ERROR: Fore.RED,
+    LOG_TYPES.ACTION: Fore.MAGENTA,
+}
+
+# logger
 def Log(*args, level=LOG_TYPES.DEBUG, show_label=True, **kwargs):
-    """Print only if logging is enabled"""
-    if LOG[level]:
-      if level == LOG_TYPES.DEBUG:
-          print(Fore.YELLOW + LOG_TYPES.DEBUG.name + ":" + RESET, *args, **kwargs) if show_label else print(*args, **kwargs)
-      elif level == LOG_TYPES.DEEP_DEBUG:
-          print(Fore.LIGHTCYAN_EX + LOG_TYPES.DEEP_DEBUG.name + ":" + RESET, *args, **kwargs) if show_label else print(*args, **kwargs)
-      elif level == LOG_TYPES.INFO:
-        print(Fore.BLUE + LOG_TYPES.INFO.name + ":" + RESET, *args, **kwargs) if show_label else print(*args, **kwargs)
-      elif level == LOG_TYPES.ERROR:
-          print(Fore.RED + LOG_TYPES.ERROR.name + ":" + RESET, *args, **kwargs) if show_label else print(*args, **kwargs)
-      elif level == LOG_TYPES.ACTION:
-          print(Fore.MAGENTA + LOG_TYPES.ACTION.name + ":" + RESET, *args, **kwargs) if show_label else print(*args, **kwargs)
-      else:
+    """
+    Print with color-coded logging levels
+        
+    Args:
+        *args: Arguments to print
+        level (LOG_TYPES, optional): Logging level. Defaults to LOG_TYPES.DEBUG
+        show_label (bool, optional): Whether to show the log level label. Defaults to True
+        **kwargs: Keyword arguments for print function
+    """
+    if not LOG.get(level, False):
+        return
+    
+    color = LOG_COLORS.get(level, RESET)
+    
+    if show_label:
+        print(f"{color}{level.name}:{RESET}", *args, **kwargs)
+    else:
         print(*args, **kwargs)
